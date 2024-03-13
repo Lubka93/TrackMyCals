@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calorieApp.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>TrackMyCals</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-success">
+    <div class="container">
+        <a href="#" class="navbar-brand m-3" ><i class="fa-solid fa-utensils pe-2"></i>TrackMyCals</a>
+
+        <button  class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-label="Expand navigation" >
+            <div class="navbar-toggler-icon"></div></button>
+
+        <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto " >
+            <li class="nav-item   me-3 ms-auto" data-bs-toggle="modal" data-bs-target="#modal03"><a href="#" class="nav-link  link-light">Set calorie limit</a></li>
+
+
+            <div class="modal" id="modal03">
+                <div class="modal-dialog modal-dialog-centered ">
+                    <div class="modal-content">
+                        <div class="modal-header">Set calories per day</div>
+                        <div class="modal-body">
+                             <form action="">
+                                <input type="text" class="form-control" id="limit-input"  name="limit-input-name" placeholder="Add your calories limit" maxlength="5" minlength="1" required>
+                                <div class="alert alert-primary alert-dismissible mt-3" id="limit-alert" role="alert" style="display: none">Input should be a number!
+                                <button class="btn-close" aria-label="close" data-bs-dismiss="alert" role="alert"></button>
+                                </div>
+                            <button class="btn btn-success mt-3 d-flex ms-auto" id="set-button" >Set</button>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+
+            <li class="nav-item ms-auto" data-bs-toggle="modal" data-bs-target="#modal04" ><a href="#" class="nav-link  link-light"  >Reset day</a></li>
+        
+            <div class="modal fade" id="modal04" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered ">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                             
+                            <div class="d-flex alert-dismissible dropup-center fade show " id="alert" role="alert">
+                               <p class="pt-3"> Are you sure? This will reset all data!</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                         
+                        </div>
+                        <div class="modal-footer">   <button class="btn btn-success mt-3 d-flex ms-auto" id="reset-button">Reset</button></div> 
+                    </div>
+                </div>
+            </div>
+        </ul>
+        
+    </div>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="row">
+
+<div class="col-6">
+    <div class="box border border-1 p-5 mt-4 border border-1 rounded-2" id="limit-bg">
+        <div class="d-flex justify-content-center" id="calorie-limit-show"> <h1 id="limit">0</h1> </div><span class="d-flex justify-content-center">Daily Calorie Limit</span>
+    </div>
+</div>
+<div class="col-6">
+    <div class="box border border-1 p-5 mt-4 border border-1 rounded-2" id="bg-gain-loss">
+        <div class="d-flex justify-content-center" id="gain-loss"> <h1>0</h1> </div><span  id="span-gain-loss" class="d-flex justify-content-center">Gain/Loss</span>
+    </div>
+</div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="box  border border-1 p-5 mt-4 border border-1 rounded-2">
+                <div class="d-flex justify-content-center"> <h1 id="consumed-cals">0</h1></div><span class="d-flex justify-content-center">Consumed Calories</span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="box  border border-1 p-5 mt-4 border border-1 rounded-2">
+                <div class="d-flex justify-content-center" ><h1 id="burned-cals">0</h1></div> <span class="d-flex justify-content-center">Burned Calories</span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="box  border border-1 p-5 mt-4 border border-1 rounded-2 " id="bg-remaining">
+                <div class="d-flex justify-content-center" id="remaining-cals"><h1 id="rem">0</h1></div><span class="d-flex justify-content-center">Remaining Calories</span>
+            </div>
+        </div>
+    </div>
+<div class="container mt-4">
+<div class="progress" id="progress-bar">
+   
+</div>
+</div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6" >
+<div class="box mb-2">
+    <input  class="form-control" type="text" placeholder="Filter meals ..." id="filter-input">
+    <label for="text" class="form-label mt-4">Meals/Food</label>
+   
+    <button class="btn btn-success mt-3 d-flex ms-auto"  data-bs-toggle="modal" data-bs-target="#modal01">
+        <i class="fa-solid fa-plus pt-1 pe-2"></i>Add meal</button>
+
+        <div class="modal" id="modal01">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">Meals</div>
+                    <div class="modal-body">
+                         <form action="" id="inputs-form-meal">
+                            <input type="text" name="meal-name" maxlength="15" min="1" class="form-control" placeholder="Add your meal" id="meal-name" required>
+                            <input type="text" name="calorie-number"maxlength="4" min="1" class="form-control mt-2" placeholder="Add consumed calories" id="calorie-number" required>
+
+                            <div class="alert alert-primary alert-dismissible mt-3" id="meal-alert" role="alert" style="display: none"> Fill both input windows!
+                                <button class="btn-close" aria-label="close" data-bs-dismiss="alert" role="alert"></button>
+                                </div>
+
+
+                        <button type="submit" class="btn btn-success mt-3 d-flex ms-auto" id="add-meal-button">Add</button>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+</div>
+<div class="box mb-2" id="meal-wrapper">
+
+</div>
+</div>
+
+<div class="col-6">
+    <input  class="form-control " type="text" placeholder="Filter workouts ..." id="filter-workout-input">
+   <div class="box mb-2">
+        <label for="text" class="form-label mt-4" id="label-workout">Workouts</label>
+      
+        <button class="btn btn-warning mt-3 d-flex ms-auto" data-bs-toggle="modal" name="workout-name" id="workout-name" data-bs-target="#modal02">
+            <i class="fa-solid fa-plus pt-1 pe-2"></i>Add workout</button>
+
+            <div class="modal" id="modal02">
+                <div class="modal-dialog modal-dialog-centered ">
+                    <div class="modal-content">
+                        <div class="modal-header"> Workouts</div>
+                        <div class="modal-body">
+                             <form action="" id="form-workout">
+                                <input type="text" class="form-control" maxlength="20" placeholder="Add your workout" id="workout-input" required>
+                                <input type="text" class="form-control mt-2" maxlength="4" placeholder="Add burned calories" id="burned-cals-input" required>
+                           
+                           
+                                <div class="alert alert-primary alert-dismissible mt-3" id="workout-alert" role="alert" style="display: none"> Fill both input windows!
+                                    <button class="btn-close" aria-label="close" data-bs-dismiss="alert" role="alert"></button>
+                                    </div>
+                           
+                        
+                           
+                                <button class="btn btn-warning mt-3 d-flex ms-auto"  id="add-workout-button">Add</button>
+                            
+                            </form>
+                        </div>
+                      
+                    </div>
+
+                </div>
+
+            </div>
+    </div>
+
+
+    <div class="box mb-2" id="workout-wrapper">
+
+    </div>
+
+</div>
+</div>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-success mt-5 border border-1 border-success rounded-top-3">
+<div class="container">
+<p class="text-light d-flex ms-auto">Made by Lubka, 2024</p>
+</div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="BsApp.js"></script>
+<script src="https://kit.fontawesome.com/8bcaf4bee0.js" crossorigin="anonymous" ></script>
+<script src="App.js"></script>
+
+</body>
+</html>
