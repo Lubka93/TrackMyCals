@@ -5,6 +5,7 @@ class Track {                   // tracker where to count calories and other stu
     this._workouts = JSON.parse(localStorage.getItem('WorkoutsArr')) || [];
     this._meals = JSON.parse(localStorage.getItem('MealsArr')) || [];
     this._totalCalorie = parseInt(localStorage.getItem('totalCals')) || 0;
+    this._calorieLimit = parseInt(localStorage.getItem('limitInput')) || 2000;
     this._saveToLS ();
     }
     
