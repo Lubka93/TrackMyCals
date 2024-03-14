@@ -301,7 +301,7 @@ this.resetModal = new bootstrap.Modal(document.getElementById('modal04'));
 
 let setButton = document.querySelector('#set-button');
 setButton.addEventListener('click', this.setLimit.bind(this));
-document.addEventListener('DOMContentLoaded', this.setLimit.bind(this));
+//document.addEventListener('DOMContentLoaded', this.setLimit.bind(this))
 
 document.addEventListener('DOMContentLoaded', this._showMeals.bind(this) );
 
@@ -488,10 +488,14 @@ showLimit () {
 
     let limitLS = localStorage.getItem('limitInput');
     let limitDom = document.querySelector('#limit');
+    if (limitLS) { 
 
-
-    this._tracker._calorieLimit = limitLS;
+    //this._tracker._calorieLimit = limitLS;
     limitDom.innerHTML = limitLS;
+ } else 
+ {this._tracker._calorieLimit = 2000;
+    this._tracker.setCalorieLimit(2000);
+}
     this._tracker._render();
 }
 
