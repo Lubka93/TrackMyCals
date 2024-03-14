@@ -383,6 +383,20 @@ _addNewWorkouts(e) {
         const arr = localStorage.getItem('WorkoutsArr');
         const arr2 = JSON.parse(arr);
     const workout = new Workout(workoutInput.value, Number.parseInt((calorieWorkoutINput.value)));
+
+    if (workoutInput.value === '' || calorieWorkoutINput.value === '') {
+    return   alert('Fill the input windows!');   
+      }
+     else if (isNaN(Number.parseInt(calorieWorkoutINput.value)) )
+      {console.log(calorieWorkoutINput.value, typeof(calorieWorkoutINput.value), 'is not number')
+        return  alert('Calorie input should be a number')
+        }
+    else if (Number(calorieWorkoutINput.value) < 0) {
+        console.log(calorieWorkoutINput.value, typeof(calorieWorkoutINput.value), 'is not a positive number')
+     return   alert('Calorie input should be a positive number')
+    }
+     else if (Number(calorieWorkoutINput.value) > 0) { 
+        console.log(calorieWorkoutINput.value, typeof(calorieWorkoutINput.value), 'is ok')
     this._tracker.addWorkout(workout);
     this._tracker._addWorkoutCard(workoutInput.value, calorieWorkoutINput.value, workout.id );
     arr2.push(workout);
@@ -390,7 +404,12 @@ _addNewWorkouts(e) {
     workoutInput.value = '';
     calorieWorkoutINput.value = '';
     this.workoutModal.hide();
+     }
+ 
+     this.showLimit ();
+    this.showSavedItems();
     this._tracker._render();
+     
     }}
 
 _showMeals () {
