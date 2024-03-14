@@ -468,8 +468,8 @@ setLimit () {
      this._tracker.setCalorieLimit(limitInput.value);
 
     if(!limitLS) {
-        this._tracker.setCalorieLimit(limitInput.value);
-        this._tracker._calorieLimit = limitInput.value;
+        this._tracker.setCalorieLimit(2000);
+        this._tracker._calorieLimit = 2000;
     }
  else if (limitLS) { 
     this._tracker.setCalorieLimit(limitInput.value);
