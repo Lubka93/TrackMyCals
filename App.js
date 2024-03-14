@@ -465,7 +465,7 @@ setLimit () {
     let limitInput = document.querySelector('#limit-input');
     let limitLS = localStorage.getItem('limitInput');
 
-     this._tracker.setCalorieLimit(limitInput.value);
+     //this._tracker.setCalorieLimit(limitInput.value);
 
     if(!limitLS) {
         this._tracker.setCalorieLimit(2000);
