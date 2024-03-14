@@ -301,6 +301,7 @@ this.resetModal = new bootstrap.Modal(document.getElementById('modal04'));
 
 let setButton = document.querySelector('#set-button');
 setButton.addEventListener('click', this.setLimit.bind(this));
+document.addEventListener('DOMContentLoaded', this.setLimit.bind(this));
 
 document.addEventListener('DOMContentLoaded', this._showMeals.bind(this) );
 
