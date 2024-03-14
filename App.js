@@ -262,6 +262,7 @@ class Track {                   // tracker where to count calories and other stu
 
     class Meal {                            //create meal object
         constructor(name, calories) {
+           
             this.id =  new Date().getTime();
             this.name = name;
             this.calories = calories;
@@ -334,9 +335,26 @@ _addNewMeal(e) {
         const arr2 = JSON.parse(arr);
         let mealInput = document.querySelector('#meal-name');
         let calorieInput = document.querySelector('#calorie-number');
+
         if (mealInput.value === '' && calorieInput.value === '') {
-            alert('Fill the input windows!');
-        } else {
+            console.log(mealInput.value, typeof(mealInput.value), ' empty')
+         return   alert('Fill the input windows!');
+           
+          }
+         else if (isNaN(calorieInput.value) )
+          {
+            console.log(calorieInput.value, typeof(calorieInput.value), 'number')
+        return  alert('Calorie input should be a number')
+            }
+
+        else if (Number(calorieInput.value) < 0) {
+            console.log(Number(calorieInput.value), typeof(Number(calorieInput.value)), ' positive number')
+         return   alert('Calorie input should be a positive number')
+            console.log('After checking if calorie input is positive');
+        }
+         else if (Number(calorieInput.value) > 0) {
+            console.log(Number(calorieInput.value), typeof(Number(calorieInput.value)), ' add cals')
+            console.log('After checking if calorie input is positive02');
             const meal = new Meal(mealInput.value, Number.parseInt(calorieInput.value));
             this._tracker.addMeal(meal);
             this._tracker._addMealCard(mealInput.value, calorieInput.value, meal.id);
@@ -465,10 +483,20 @@ setLimit () {
     let limitDom = document.querySelector('#limit');
     let limitInput = document.querySelector('#limit-input');
     let limitLS = localStorage.getItem('limitInput');
-
+   // console.log(parseInt(limitInput.value), typeof(parseInt(limitInput.value)))
      //this._tracker.setCalorieLimit(limitInput.value);
 
-    if(!limitLS) {
+     if (!limitInput.value) {
+        // If the input is empty
+        alert('Add number of calories!');
+    } else if (isNaN(limitInput.value)) {
+        // If the input is not a positive number
+        alert('Input must be a number!');
+    } else if (Number(limitInput.value) <= 0) {
+        alert('Input must be a positive number!');
+    }
+
+  else  if(!limitLS) {
         this._tracker.setCalorieLimit(2000);
         this._tracker._calorieLimit = 2000;
     }
@@ -478,7 +506,7 @@ setLimit () {
 
   
  }
- limitDom.innerHTML = localStorage.getItem('limitInput');
+ //limitDom.innerHTML = localStorage.getItem('limitInput');
  this.limitModal.hide();
     limitInput.value = '';
     this.showLimit ();
@@ -488,9 +516,9 @@ showLimit () {
 
     let limitLS = localStorage.getItem('limitInput');
     let limitDom = document.querySelector('#limit');
-    if (limitLS) { 
 
-    //this._tracker._calorieLimit = limitLS;
+    if (limitLS) { 
+    this._tracker.setCalorieLimit(limitLS);
     limitDom.innerHTML = limitLS;
  } else 
  {this._tracker._calorieLimit = 2000;
